@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class HomeTab extends StatelessWidget {
@@ -28,6 +29,31 @@ class HomeTab extends StatelessWidget {
                 title: const Text('Novidades'), // O title é const pois o texto vai ser fixo e nunca vai alterar
                 centerTitle: true,
               ),
+            ),
+            FutureBuilder<QuerySnapshot>(
+              future: Firestore.instance.collection("home").orderBy("pos").getDocuments(),
+              builder: (context, snapshot) { // builder --> É a função que vai criar algo na tela dependendo do que o Future trazer
+                if (!snapshot.hasData)
+                  return SliverToBoxAdapter(
+                    child: Container(
+                      height: 200.0,
+                      alignment: Alignment.center,
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                      )
+                    )
+                  );
+                else {
+                  print(snapshot.data.documents.length);
+                  return SliverToBoxAdapter(
+                      child: Container(
+                          height: 200.0,
+                          alignment: Alignment.center,
+                          child: Container()
+                      )
+                  );
+                }
+              }
             )
           ],
         )
