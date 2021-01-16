@@ -3,6 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:loja_virtual/tiles/drawer_tile.dart';
 
 class CustomDrawer extends StatelessWidget {
+
+  final PageController pageController;
+
+  CustomDrawer(this.pageController);
+
   @override
   Widget build(BuildContext context) {
     Widget _builderDrawerBack() => Container(
@@ -63,10 +68,10 @@ class CustomDrawer extends StatelessWidget {
                 ),
               ),
               Divider(), // Para ter uma linha dividindo o conteúdo
-              DrawerTile(Icons.home, 'Início'),
-              DrawerTile(Icons.list, 'Produtos'),
-              DrawerTile(Icons.location_on, 'Lojas'),
-              DrawerTile(Icons.playlist_add_check, 'Meus Pedido')
+              DrawerTile(Icons.home, 'Início', pageController, 0),
+              DrawerTile(Icons.list, 'Produtos', pageController, 1),
+              DrawerTile(Icons.location_on, 'Lojas', pageController, 2),
+              DrawerTile(Icons.playlist_add_check, 'Meus Pedido', pageController, 3)
             ],
           )
         ],

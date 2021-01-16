@@ -15,8 +15,11 @@ class HomeScreen extends StatelessWidget {
       children: <Widget>[
         Scaffold(
           body: HomeTab(),
-          drawer: CustomDrawer(),
-        )
+          drawer: CustomDrawer(_pageController),
+        ),
+        Container(color: Colors.red),
+        Container(color: Colors.green),
+        Container(color: Colors.blue)
       ], // children -> Receba vários widgets
     );
   }
