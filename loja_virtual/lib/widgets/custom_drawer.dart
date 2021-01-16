@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:loja_virtual/tiles/drawer_tile.dart';
+
 class CustomDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -32,10 +34,39 @@ class CustomDrawer extends StatelessWidget {
                       child: Text("Flutter's\nClothing", // \n serve para dar uma quebra de linha
                         style: TextStyle(fontSize: 34.0, fontWeight: FontWeight.bold)
                       )
-                    )
+                    ),
+                    Positioned(
+                      left: 0.0,
+                      bottom: 0.0,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start, // Para que fique tudo alinhado na esquerda
+                        children: <Widget>[
+                          Text('Olá,',
+                            style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                          ),
+                          GestureDetector(
+                            child: Text('Entre ou cadastre-se',
+                              style: TextStyle(
+                                color: Theme.of(context).primaryColor,
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.bold
+                              )
+                            ),
+                            onTap: () {
+                              print("It's working");
+                            }
+                          )
+                        ],
+                      )
+                    ),
                   ],
                 ),
-              )
+              ),
+              Divider(), // Para ter uma linha dividindo o conteúdo
+              DrawerTile(Icons.home, 'Início'),
+              DrawerTile(Icons.list, 'Produtos'),
+              DrawerTile(Icons.location_on, 'Lojas'),
+              DrawerTile(Icons.playlist_add_check, 'Meus Pedido')
             ],
           )
         ],
