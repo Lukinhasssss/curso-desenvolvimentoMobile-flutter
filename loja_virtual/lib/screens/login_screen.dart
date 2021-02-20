@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loja_virtual/screens/signup_screen.dart';
 
 class LoginScreen extends StatelessWidget {
 
@@ -15,7 +16,7 @@ class LoginScreen extends StatelessWidget {
             child: Text('CRIAR CONTA', style: TextStyle(fontSize: 15.0)),
             textColor: Colors.white,
             onPressed: () {
-              print('CRIAR CONTA');
+              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => SignupScreen()));
             }
           )
         ]
@@ -31,7 +32,7 @@ class LoginScreen extends StatelessWidget {
               ),
               keyboardType: TextInputType.emailAddress,
               validator: (text) {
-                if (text.isEmpty || !text.contains('@')) return 'E-mail inválido';
+                if (text.isEmpty || !text.contains('@')) return 'E-mail inválido!';
               }
             ),
             SizedBox(height: 16.0),
@@ -52,7 +53,7 @@ class LoginScreen extends StatelessWidget {
                 },
                 child: Text('Esqueci minha senha',
                   textAlign: TextAlign.right,
-                  style: TextStyle(fontWeight: FontWeight.w400, color: Colors.grey[600]),
+                  style: TextStyle(fontWeight: FontWeight.w400, color: Colors.grey[850]),
                 ),
                 padding: EdgeInsets.zero
               )
