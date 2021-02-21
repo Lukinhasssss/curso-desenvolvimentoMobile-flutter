@@ -4,7 +4,7 @@ import 'package:loja_virtual/datas/product_data.dart';
 
 class CartProduct {
 
-  String category_id;
+  String cart_id;
   String category;
   String product_id;
   int quantity;
@@ -13,7 +13,7 @@ class CartProduct {
   ProductData productData;
 
   CartProduct.fromDocument(DocumentSnapshot product) {
-    category_id = product.documentID;
+    cart_id = product.documentID;
     category = product.data["category"];
     product_id = product.data["product_id"];
     quantity = product.data["quantity"];
