@@ -20,4 +20,12 @@ class ProductData { // Essa classe serve apenas para armazenar os dados do produ
     sizes = snapshot.data['sizes'];
   }
 
+  Map<String, dynamic> toResumedMap() {
+    return {
+      'title': title,
+      'description': description,
+      "price": price
+    };
+  }
+
 }
