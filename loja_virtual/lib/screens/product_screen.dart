@@ -104,26 +104,31 @@ class _ProductScreenState extends State<ProductScreen> {
                 SizedBox(height: 16.0),
                 SizedBox(
                   height: 44.0,
-                  child: RaisedButton(
-                    onPressed: size == null ? null : () { // Quando o onPressed é nulo o botão fica desabilitado
-                      if (UserModel.of(context).isLoggedIn()) {
-                        CartProduct cartProduct = CartProduct();
-                        cartProduct.size = size;
-                        cartProduct.quantity = 1;
-                        cartProduct.product_id = product.id;
-                        cartProduct.category = product.category;
+                  child: ElevatedButton(
+                      child: Text(UserModel.of(context).isLoggedIn() ? 'Adicionar ao carrinho' : 'Entre para comprar',
+                          style: TextStyle(fontSize: 18.0)
+                      ),
+                      style: ElevatedButton.styleFrom(
+                          primary: Theme.of(context).primaryColor,
+                          onPrimary: Colors.white,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(4.0)
+                          )
+                      ),
+                      onPressed: size == null ? null : () { // Quando o onPressed é nulo o botão fica desabilitado
+                        if (UserModel.of(context).isLoggedIn()) {
+                          CartProduct cartProduct = CartProduct();
+                          cartProduct.size = size;
+                          cartProduct.quantity = 1;
+                          cartProduct.product_id = product.id;
+                          cartProduct.category = product.category;
 
-                        CartModel.of(context).addCartItem(cartProduct);
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => CartScreen()));
-                      } else {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginScreen()));
+                          CartModel.of(context).addCartItem(cartProduct);
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => CartScreen()));
+                        } else {
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginScreen()));
+                        }
                       }
-                    },
-                    child: Text(UserModel.of(context).isLoggedIn() ? 'Adicionar ao carrinho' : 'Entre para comprar',
-                      style: TextStyle(fontSize: 18.0)
-                    ),
-                    color: primaryColor,
-                    textColor: Colors.white,
                   )
                 ),
                 SizedBox(height: 16.0),
@@ -141,3 +146,5 @@ class _ProductScreenState extends State<ProductScreen> {
     );
   }
 }
+
+/* No lugar do ElevatedButton tinha um RaisedButton mas como ele estava deprecated troquei para um ElevatedButton */
