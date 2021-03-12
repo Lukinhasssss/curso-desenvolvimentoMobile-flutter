@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:loja_virtual/datas/cart_product.dart';
 import 'package:loja_virtual/datas/product_data.dart';
+import 'package:loja_virtual/models/cart_model.dart';
 
 class CartTile extends StatelessWidget {
 
@@ -55,18 +56,22 @@ class CartTile extends StatelessWidget {
                         icon: Icon(Icons.remove),
                         color: Theme.of(context).primaryColor,
                         onPressed: cartProduct.quantity > 1 ?
-                        () {} : null
+                        () { CartModel.of(context).decrementProduct(cartProduct); } : null
                       ),
                       Text(cartProduct.quantity.toString()),
                       IconButton(
                         icon: Icon(Icons.add),
                         color: Theme.of(context).primaryColor,
-                        onPressed: () { print('Adicionando 1 item ao carrinho'); },
+                        onPressed: () {
+                          CartModel.of(context).incrementProduct(cartProduct);
+                        },
                       ),
                       TextButton(
                         child: Text('Remover'),
                         style: TextButton.styleFrom(primary: Colors.grey[500]),
-                        onPressed: () { print('Removendo produto do carrinho'); }
+                        onPressed: () {
+                          CartModel.of(context).removeCartItem(cartProduct);
+                        }
                       )
                     ],
                   )
